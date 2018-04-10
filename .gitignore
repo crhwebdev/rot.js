@@ -1,8 +1,8 @@
 /coverage
 /lib
 /node_modules
-/package.json
 /test
+/archive
 
 # exclude idea based editors
 .idea/
