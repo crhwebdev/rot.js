@@ -8,8 +8,9 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "npm-run-all bundle compile",
+    "build": "npm-run-all concat compile",    
     "bundle": "rollup src/rot.js --o rot.js -f umd --name \"rot\"",
+    "concat": "node utils/concat.js",
     "compile": "google-closure-compiler-js rot.js > rot.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/ondras/rot.js#readme",
   "devDependencies": {
+    "concat": "^1.0.3",
     "gh-pages": "^1.1.0",
     "google-closure-compiler-js": "^20180402.0.0",
     "jasmine": "^3.1.0",

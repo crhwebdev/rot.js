@@ -1,21 +1,3 @@
-/*
-	This is rot.js, the ROguelike Toolkit in JavaScript.
-	Version 0.7~dev, generated on Tue Dec 12 13:31:09 CET 2017.
-*/
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define([], factory);
-    } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        module.exports = factory();
-    } else {
-        // Browser globals (root is window)
-        root.ROT = factory();
-    }
-}(this, function() {
 /**
  * @namespace Top-level ROT namespace
  */
@@ -369,6 +351,7 @@ var ROT = {
 	/** Linux support for this keycode was added in Gecko 4.0.	 */
 	VK_SLEEP: 95 
 };
+
 /**
  * @namespace
  * Contains text tokenization and breaking routines
@@ -563,6 +546,7 @@ ROT.Text = {
 		return tokens[tokenIndex].value.substring(0, breakIndex);
 	}
 };
+
 /**
  * @returns {any} Randomly picked item, null when length=0
  */
@@ -583,6 +567,7 @@ Array.prototype.randomize = Array.prototype.randomize || function() {
   }
   return result;
 };
+
 /**
  * Always positive modulus
  * @param {int} n Modulus
@@ -591,6 +576,7 @@ Array.prototype.randomize = Array.prototype.randomize || function() {
 Number.prototype.mod = Number.prototype.mod || function(n) {
 	return ((this%n)+n)%n;
 };
+
 /**
  * @returns {string} First letter capitalized
  */
@@ -672,6 +658,7 @@ String.prototype.format = String.prototype.format || function() {
 	return String.format.apply(String, args);
 };
 
+
 if (!Object.create) {  
 	/**
 	 * ES5 Object.create
@@ -682,6 +669,7 @@ if (!Object.create) {
 		return new tmp();
 	};  
 }  
+
 /**
  * Sets prototype of this function to an instance of parent function
  * @param {function} parent
@@ -691,6 +679,7 @@ Function.prototype.extend = Function.prototype.extend || function(parent) {
 	this.prototype.constructor = this;
 	return this;
 };
+
 if (typeof window != "undefined") {
 	window.requestAnimationFrame =
 		window.requestAnimationFrame
@@ -708,6 +697,7 @@ if (typeof window != "undefined") {
 		|| window.msCancelAnimationFrame
 		|| function(id) { return clearTimeout(id); };
 }
+
 /**
  * @class Visual map display
  * @param {object} [options]
@@ -979,6 +969,7 @@ ROT.Display.prototype._draw = function(key, clearBefore) {
 
 	this._backend.draw(data, clearBefore);
 };
+
 /**
  * @class Abstract display backend module
  * @private
@@ -1001,6 +992,7 @@ ROT.Display.Backend.prototype.computeFontSize = function(availWidth, availHeight
 
 ROT.Display.Backend.prototype.eventToPosition = function(x, y) {
 };
+
 /**
  * @class Rectangular backend
  * @private
@@ -1127,6 +1119,7 @@ ROT.Display.Rect.prototype.computeFontSize = function(availWidth, availHeight) {
 ROT.Display.Rect.prototype.eventToPosition = function(x, y) {
 	return [Math.floor(x/this._spacingX), Math.floor(y/this._spacingY)];
 };
+
 /**
  * @class Hexagonal backend
  * @private
@@ -1278,6 +1271,7 @@ ROT.Display.Hex.prototype._fill = function(cx, cy) {
 	}
 	this._context.fill();
 };
+
 /**
  * @class Tile backend
  * @private
@@ -1374,6 +1368,7 @@ ROT.Display.Tile.prototype.computeFontSize = function(availWidth, availHeight) {
 ROT.Display.Tile.prototype.eventToPosition = function(x, y) {
 	return [Math.floor(x/this._options.tileWidth), Math.floor(y/this._options.tileHeight)];
 };
+
 /**
  * @namespace
  * This code is an implementation of Alea algorithm; (C) 2010 Johannes Baagøe.
@@ -1512,6 +1507,7 @@ ROT.RNG = {
 };
 
 ROT.RNG.setSeed(Date.now());
+
 /**
  * @class (Markov process)-based string generator. 
  * Copied from a <a href="http://www.roguebasin.roguelikedevelopment.org/index.php?title=Names_from_a_high_order_Markov_Process_and_a_simplified_Katz_back-off_scheme">RogueBasin article</a>. 
@@ -1668,6 +1664,7 @@ ROT.StringGenerator.prototype._backoff = function(context) {
 
 	return context;
 };
+
 /**
  * @class Generic event queue: stores events and retrieves them based on their time
  */
@@ -1757,6 +1754,7 @@ ROT.EventQueue.prototype._remove = function(index) {
 	this._events.splice(index, 1);
 	this._eventTimes.splice(index, 1);
 };
+
 /**
  * @class Abstract scheduler
  */
@@ -1825,6 +1823,7 @@ ROT.Scheduler.prototype.next = function() {
 	this._current = this._queue.get();
 	return this._current;
 };
+
 /**
  * @class Simple fair scheduler (round-robin style)
  * @augments ROT.Scheduler
@@ -1851,6 +1850,7 @@ ROT.Scheduler.Simple.prototype.next = function() {
 	}
 	return ROT.Scheduler.prototype.next.call(this);
 };
+
 /**
  * @class Speed-based scheduler
  * @augments ROT.Scheduler
@@ -1880,6 +1880,7 @@ ROT.Scheduler.Speed.prototype.next = function() {
 	}
 	return ROT.Scheduler.prototype.next.call(this);
 };
+
 /**
  * @class Action-based scheduler
  * @augments ROT.Scheduler
@@ -1930,6 +1931,7 @@ ROT.Scheduler.Action.prototype.setDuration = function(time) {
 	if (this._current) { this._duration = time; }
 	return this;
 };
+
 /**
  * @class Asynchronous main loop
  * @param {ROT.Scheduler} scheduler
@@ -1973,6 +1975,7 @@ ROT.Engine.prototype.unlock = function() {
 
 	return this;
 };
+
 /**
  * @class Base map generator
  * @param {int} [width=ROT.DEFAULT_WIDTH]
@@ -1993,6 +1996,7 @@ ROT.Map.prototype._fillMap = function(value) {
 	}
 	return map;
 };
+
 /**
  * @class Simple empty rectangular room
  * @augments ROT.Map
@@ -2013,6 +2017,7 @@ ROT.Map.Arena.prototype.create = function(callback) {
 	}
 	return this;
 };
+
 /**
  * @class Recursively divided maze, http://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_division_method
  * @augments ROT.Map
@@ -2121,6 +2126,7 @@ ROT.Map.DividedMaze.prototype._partitionRoom = function(room) {
 	this._stack.push([room[0], y+1, x-1, room[3]]); /* left bottom */
 	this._stack.push([x+1, y+1, room[2], room[3]]); /* right bottom */
 };
+
 /**
  * @class Icey's Maze generator
  * See http://www.roguebasin.roguelikedevelopment.org/index.php?title=Simple_maze for explanation
@@ -2222,6 +2228,7 @@ ROT.Map.IceyMaze.prototype._isFree = function(map, x, y, width, height) {
 	if (x < 1 || y < 1 || x >= width || y >= height) { return false; }
 	return map[x][y];
 };
+
 /**
  * @class Maze generator - Eller's algorithm
  * See http://homepages.cwi.nl/~tromp/maze.html for explanation
@@ -2317,6 +2324,7 @@ ROT.Map.EllerMaze.prototype._addToList = function(i, L, R) {
 	R[i] = i+1;
 	L[i+1] = i;
 };
+
 /**
  * @class Cellular automaton map generator
  * @augments ROT.Map
@@ -2660,6 +2668,7 @@ ROT.Map.Cellular.prototype._freeSpace = function(x, y, value) {
 ROT.Map.Cellular.prototype._pointKey = function(p) {
 	return p[0] + "." + p[1];
 }
+
 /**
  * @class Dungeon map: has rooms and corridors
  * @augments ROT.Map
@@ -2686,6 +2695,7 @@ ROT.Map.Dungeon.prototype.getRooms = function() {
 ROT.Map.Dungeon.prototype.getCorridors = function() {
 	return this._corridors;
 };
+
 /**
  * @class Random dungeon generator using human-like digging patterns.
  * Heavily based on Mike Anderson's ideas from the "Tyrant" algo, mentioned at 
@@ -2920,6 +2930,7 @@ ROT.Map.Digger.prototype._addDoors = function() {
 		room.addDoors(isWallCallback);
 	}
 };
+
 /**
  * @class Dungeon generator which tries to fill the space evenly. Generates independent rooms and tries to connect them.
  * @augments ROT.Map.Dungeon
@@ -3250,6 +3261,7 @@ ROT.Map.Uniform.prototype._canBeDugCallback = function(x, y) {
 	if (x < 1 || y < 1 || x+1 >= this._width || y+1 >= this._height) { return false; }
 	return (this._map[x][y] == 1);
 };
+
 
 /**
  * @author hyakugei
@@ -3667,6 +3679,7 @@ ROT.Map.Rogue.prototype._createCorridors = function () {
 		}
 	}
 };
+
 /**
  * @class Dungeon feature; has own .create() method
  */
@@ -4009,6 +4022,7 @@ ROT.Map.Feature.Corridor.prototype.createPriorityWalls = function(priorityWallCa
 	priorityWallCallback(this._endX + nx, this._endY + ny);
 	priorityWallCallback(this._endX - nx, this._endY - ny);
 };
+
 /**
  * @class Base noise generator
  */
@@ -4016,6 +4030,7 @@ ROT.Noise = function() {
 };
 
 ROT.Noise.prototype.get = function(x, y) {};
+
 /**
  * A simple 2d implementation of simplex noise by Ondrej Zara
  *
@@ -4132,6 +4147,7 @@ ROT.Noise.Simplex.prototype.get = function(xin, yin) {
 	// The result is scaled to return values in the interval [-1,1].
 	return 70 * (n0 + n1 + n2);
 }
+
 /**
  * @class Abstract FOV algorithm
  * @param {function} lightPassesCallback Does the light pass through x,y?
@@ -4206,6 +4222,7 @@ ROT.FOV.prototype._getCircle = function(cx, cy, r) {
 
 	return result;
 };
+
 /**
  * @class Discrete shadowcasting algorithm. Obsoleted by Precise shadowcasting.
  * @augments ROT.FOV
@@ -4314,6 +4331,7 @@ ROT.FOV.DiscreteShadowcasting.prototype._visibleCoords = function(A, B, blocks, 
 		return true;
 	}
 };
+
 /**
  * @class Precise shadowcasting algorithm
  * @augments ROT.FOV
@@ -4437,6 +4455,7 @@ ROT.FOV.PreciseShadowcasting.prototype._checkVisibility = function(A1, A2, block
 
 	return visibleLength/arcLength;
 };
+
 /**
  * @class Recursive shadowcasting algorithm
  * Currently only supports 4/8 topologies, not hexagonal.
@@ -4591,6 +4610,7 @@ ROT.FOV.RecursiveShadowcasting.prototype._castVisibility = function(startX, star
 		if(blocked) { break; }
 	}
 };
+
 /**
  * @namespace Color operations
  */
@@ -4968,6 +4988,7 @@ ROT.Color = {
 		"white": [255,255,255]
 	}
 };
+
 /**
  * @class Lighting computation, based on a traditional FOV for multiple light sources and multiple passes.
  * @param {function} reflectivityCallback Callback to retrieve cell reflectivity (0..1)
@@ -5187,6 +5208,7 @@ ROT.Lighting.prototype._updateFOV = function(x, y) {
 
 	return cache;
 };
+
 /**
  * @class Abstract pathfinder
  * @param {int} toX Target X coord
@@ -5243,6 +5265,7 @@ ROT.Path.prototype._getNeighbors = function(cx, cy) {
 	
 	return result;
 };
+
 /**
  * @class Simplified Dijkstra's algorithm: all edges have a value of 1
  * @augments ROT.Path
@@ -5303,6 +5326,7 @@ ROT.Path.Dijkstra.prototype._add = function(x, y, prev) {
 	this._computed[x+","+y] = obj;
 	this._todo.push(obj);
 };
+
 /**
  * @class Simplified A* algorithm: all edges have a value of 1
  * @augments ROT.Path
@@ -5401,5 +5425,3 @@ ROT.Path.AStar.prototype._distance = function(x, y) {
 
         throw new Error("Illegal topology");
 };
-  return ROT;
-}));
