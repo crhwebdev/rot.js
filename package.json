@@ -1,29 +1,39 @@
 {
-  "name": "rot",
+  "name": "rot.js",
   "version": "0.6.0",
-  "description": "rot.js\r ======",
+  "description": "A roguelike toolkit in JavaScript",
   "main": "rot.js",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
+  "keywords": [
+		"rogue",
+		"roguelike",
+		"game",
+		"ascii",
+		"tiles",
+		"dungeon",
+		"los",
+		"fov",
+		"lighting"
+	],
   "scripts": {
     "build": "npm-run-all concat compile",    
     "bundle": "rollup src/rot.js --o rot.js -f umd --name \"rot\"",
     "concat": "node utils/concat.js",
-    "compile": "google-closure-compiler-js rot.js > rot.min.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "google-closure-compiler-js rot.js > rot.min.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ondras/rot.js.git"
   },
   "author": "Ondrej Zara <ondrej.zara@gmail.com> (http://ondras.zarovi.cz/)",
-  "license": "ISC",
+  "license": "BSD License",
   "bugs": {
     "url": "https://github.com/ondras/rot.js/issues"
   },
-  "homepage": "https://github.com/ondras/rot.js#readme",
+  "homepage": "http://ondras.github.io/rot.js/hp/",
   "devDependencies": {
     "concat": "^1.0.3",
     "gh-pages": "^1.1.0",
