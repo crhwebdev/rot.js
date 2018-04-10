@@ -1,6 +1,6 @@
 {
   "name": "rot",
-  "version": "1.0.0",
+  "version": "0.6.0",
   "description": "rot.js\r ======",
   "main": "rot.js",
   "directories": {
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/ondras/rot.js.git"
   },
-  "author": "ondras",
+  "author": "Ondrej Zara <ondrej.zara@gmail.com> (http://ondras.zarovi.cz/)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ondras/rot.js/issues"
